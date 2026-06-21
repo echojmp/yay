@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "yay",
+	"version": "${version}",
+	"name": "yay",
+	"description": "A minecraft mod with things I made to learn / for fun, I don't recommend using this in a modpack cause of this",
+	"authors": [
+		"echojmp"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/yay/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"echojmp.yay.Yay"
+		],
+		"client": [
+			"echojmp.yay.Client"
+		],
+		"fabric-datagen": [
+			"echojmp.yay.YayDataGenerator"
+		]
+	},
+	"mixins": [
+		"yay.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
