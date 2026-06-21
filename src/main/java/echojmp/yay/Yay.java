@@ -1,7 +1,10 @@
 package echojmp.yay;
 
+import echojmp.yay.Enchants.Smelt;
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 import org.slf4j.Logger;
@@ -13,7 +16,7 @@ public class Yay implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
+		Registry.register(Registries.ENCHANTMENT, new Identifier(MOD_ID, "smelt"), new Smelt());
 	}
 
 	public static Identifier id(String path) {
