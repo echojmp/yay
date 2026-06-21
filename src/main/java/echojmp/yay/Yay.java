@@ -13,7 +13,7 @@ public class Yay implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+
 	}
 
 	public static Identifier id(String path) {
