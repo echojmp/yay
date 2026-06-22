@@ -3,7 +3,7 @@
 	"package": "echojmp.yay.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"Enchants.SmeltMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
