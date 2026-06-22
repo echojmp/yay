@@ -1,35 +1,20 @@
 package echojmp.yay;
 
-import com.mojang.brigadier.arguments.DoubleArgumentType;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import echojmp.yay.Enchants.Smelt;
-import echojmp.yay.Enchants.SmeltFuncs;
+import echojmp.yay.Enchants.SmeltFunctionality;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
-import net.minecraft.block.BlockState;
-import net.minecraft.command.argument.ArgumentTypes;
-import net.minecraft.command.argument.BlockPosArgumentType;
-import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
-import net.minecraft.util.math.BlockPos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.text.Position;
-
-import java.util.Collection;
-
-import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class Yay implements ModInitializer {
@@ -56,7 +41,7 @@ public class Yay implements ModInitializer {
 		);
 
 		// Inits
-		SmeltFuncs.init();
+		SmeltFunctionality.init();
 	}
 
 	public static Identifier id(String path) {

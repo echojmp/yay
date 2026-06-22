@@ -3,26 +3,19 @@ package echojmp.yay.Enchants;
 import com.google.common.collect.Maps;
 import echojmp.yay.Yay;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootTable;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Predicate;
 
-public class SmeltFuncs {
+public class SmeltFunctionality {
     public static void init() {
         /*AttackBlockCallback.EVENT.register((player, level, hand, pos, direction) -> {
             BlockState state = level.getBlockState(pos);
@@ -95,5 +88,6 @@ public class SmeltFuncs {
                 }
             }
         });
+        LootTableEvents.MODIFY.register(());
     }
 }

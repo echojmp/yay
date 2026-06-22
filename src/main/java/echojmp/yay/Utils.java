@@ -24,13 +24,13 @@ public class Utils {
         return fuelMap.getOrDefault(item, 0);
     }
 
-    // returns a new ItemStack that the given ItemStack would become if fully smelted in a furnace
+    // returns a new ItemStack that the given ItemStack would become if fully smelted in a furnace, does not run asynchronously ig
+    private static final Inventory smelt_sample_inv = new SimpleInventory(1);
     public static ItemStack smelt(World world, ItemStack item) {
         RecipeManager recipeManager = world.getRecipeManager();
 
-        Inventory inventory = new SimpleInventory(1);
-        inventory.setStack(0, item);
-        Optional<SmeltingRecipe> recipe = recipeManager.getFirstMatch(RecipeType.SMELTING, inventory, world);
+        smelt_sample_inv.setStack(0, item);
+        Optional<SmeltingRecipe> recipe = recipeManager.getFirstMatch(RecipeType.SMELTING, smelt_sample_inv, world);
 
         if (recipe.isPresent()) {
             ItemStack smeltResult = recipe.get().getOutput(world.getRegistryManager());
