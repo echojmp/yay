@@ -24,6 +24,13 @@ public class Yay implements ModInitializer {
 	// Enchants
 	public static final Enchantment ENCHANTMENT_SMELT = Registry.register(Registries.ENCHANTMENT, new Identifier(MOD_ID, "smelt"), new Smelt());
 
+	// Packets
+		// Smelt
+	public static final Identifier Smelt_Block_Destroy = Identifier.of(MOD_ID, "smelt_block_destroy");
+	public static final Identifier Smelt_ItemEntity_Cooking = Identifier.of(MOD_ID, "smelt_itementity_cooking");
+	public static final Identifier Smelt_ItemEntity_Cooking_Finished = Identifier.of(MOD_ID, "smelt_itementity_cooking_finished");
+
+	// Init
 	@Override
 	public void onInitialize() {
 		// Commands
@@ -41,6 +48,7 @@ public class Yay implements ModInitializer {
 		);
 
 		// Inits
+		Utils.initServer();
 		SmeltFunctionality.init();
 	}
 
