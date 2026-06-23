@@ -26,11 +26,11 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class Utils {
-    private static final Map<Item, Integer> fuelMap = AbstractFurnaceBlockEntity.createFuelTimeMap();
+    //private static final Map<Item, Integer> fuelMap = AbstractFurnaceBlockEntity.createFuelTimeMap(); // wait what? wdym buggy?
 
     // same thing as in the thing
     public static int getFuelTime(Item fuel) {
-        return fuelMap.getOrDefault(fuel, 0);
+        return AbstractFurnaceBlockEntity.createFuelTimeMap().getOrDefault(fuel, 0);
     }
 
     // returns a new ItemStack that the given ItemStack would become if fully smelted in a furnace, does not run asynchronously ig
@@ -56,6 +56,14 @@ public class Utils {
         Optional<SmeltingRecipe> recipe = recipeManager.getFirstMatch(RecipeType.SMELTING, smelt_sample_inv, world);
 
         return recipe.map(smeltingRecipe -> smeltingRecipe.getExperience() * item.getCount()).orElse(0F);
+    }
+    public static int getCookTime(World world, ItemStack item) {
+        RecipeManager recipeManager = world.getRecipeManager();
+
+        smelt_sample_inv.setStack(0, item);
+        Optional<SmeltingRecipe> recipe = recipeManager.getFirstMatch(RecipeType.SMELTING, smelt_sample_inv, world);
+
+        return recipe.map(AbstractCookingRecipe::getCookTime).orElse(200);
     }
 
     // I couldn't find how minecraft does it

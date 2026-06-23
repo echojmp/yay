@@ -55,7 +55,14 @@ public class SmeltFunctionality {
                             new Box(pos),
                             drop -> {return true;}
                     );
-                    if (drops.isEmpty()) return;
+                    boolean canCook = false;
+                    for (ItemEntity drop : drops) {
+                        if (Smelt.canCook(world, drop.getStack())) {
+                            canCook = true;
+                            break;
+                        };
+                    }
+                    if (!canCook) return;
 
                     ItemStack offHandItem = player.getOffHandStack();
                     int fuelEff = Smelt.getFuelEfficiency(offHandItem);
@@ -86,7 +93,7 @@ public class SmeltFunctionality {
                         int fuel = entry.getValue();
                         ItemEntity drop = entry.getKey();
 
-                        int cookTime = Smelt.getCookingTime(drop.getStack(), fuel, smeltLevel);
+                        int cookTime = Smelt.getCookingTime(world, drop.getStack(), fuel, smeltLevel);
                         Smelt.cookDrop(world, drop, cookTime);
                     }
 

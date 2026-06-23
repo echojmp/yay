@@ -10,10 +10,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.function.Supplier;
 
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -34,14 +37,13 @@ public class Yay implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		// Commands
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("smelt")
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal("fueleff")
 			.requires(source -> source.hasPermissionLevel(2))
 			.executes(context -> {
 				ServerPlayerEntity player = context.getSource().getPlayer();
 				ItemStack mainItem = player.getMainHandStack();
 
-				ItemStack result = echojmp.yay.Utils.smelt(context.getSource().getWorld(), player.getMainHandStack());
-				player.getInventory().setStack(player.getInventory().selectedSlot, result);
+				context.getSource().sendFeedback(() -> Text.literal("Got fuel efficiency of "+mainItem.getItem().toString()+": "+Smelt.getFuelEfficiency(mainItem)), false);
 
 				return 1;
 			}))

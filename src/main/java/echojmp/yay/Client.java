@@ -24,7 +24,7 @@ public class Client implements ClientModInitializer {
 				Random rand = Random.create();
 				world.playSound(client.player, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, .4F,  .666f + rand.nextFloat() / 1.5f);
 
-				for (int i = 0; i < 3; i++) {
+				for (int i = 0; i < 2; i++) {
 					world.addParticle(ParticleTypes.LARGE_SMOKE,
 							pos.getX() + .5f + (rand.nextFloat() - .5f),
 							pos.getY() + .5f + (rand.nextFloat() - .5f),
@@ -42,6 +42,15 @@ public class Client implements ClientModInitializer {
 							(rand.nextFloat() - .5f) / 20 * 2
 					);
 				}
+				world.addParticle(ParticleTypes.SMOKE,
+						pos.getX() + .5f + (rand.nextFloat() - .5f),
+						pos.getY() + .5f + (rand.nextFloat() - .5f),
+						pos.getZ() + .5f + (rand.nextFloat() - .5f),
+						(rand.nextFloat() - .5f) / 20 * 2,
+						(rand.nextFloat() - .15f) / 20 * 1,
+						(rand.nextFloat() - .5f) / 20 * 2
+				);
+
 				for (int i = 0; i < rand.nextBetween(1, 3); i++) {
 					world.addParticle(ParticleTypes.FLAME,
 							pos.getX() + .5f + (rand.nextFloat() - .5f),
@@ -61,7 +70,7 @@ public class Client implements ClientModInitializer {
 
 			client.execute(() -> {
 				Random rand = Random.create();
-				world.playSound(client.player, bPos, SoundEvents.BLOCK_BLASTFURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, .4F,  .666f + rand.nextFloat() / 1.5f);
+				world.playSound(client.player, bPos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, .4F,  .666f + rand.nextFloat() / 1.5f);
 
 				for (int i = 0; i < 5; i++) {
 					world.addParticle(ParticleTypes.FLAME,
