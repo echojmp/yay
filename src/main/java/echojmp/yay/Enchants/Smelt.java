@@ -1,5 +1,6 @@
 package echojmp.yay.Enchants;
 
+import echojmp.yay.Items.ModItems;
 import echojmp.yay.Utils;
 import echojmp.yay.Yay;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -11,7 +12,9 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -60,9 +63,26 @@ public class Smelt extends Enchantment {
 	}
 
 	//
-	private static void smeltGroundItem(World world, ItemEntity item) {
+	private static void smeltGroundItem(World world, ItemEntity item, boolean isOvercooked) {
+		ItemStack result = Utils.smelt(world, item.getStack());
+		if (isOvercooked) {
+			Item newResult = result.getItem();
+
+			if (result.isOf(Items.CHARCOAL)) {
+				newResult = ModItems.MOLTEN_CHARCOAL;
+			}
+
+			if (!result.isOf(newResult)) {
+				int count = result.getCount();
+				result = new ItemStack(newResult);
+				result.setCount(count);
+
+				// TODO: give achievement
+			}
+		}
+
+		item.setStack(result);
 		item.resetPickupDelay();
-		item.setStack(Utils.smelt(world, item.getStack()));
 
 		// xp
 		float experience = Utils.getSmeltXP(world, item.getStack());
@@ -84,18 +104,18 @@ public class Smelt extends Enchantment {
 			ServerPlayNetworking.send(sPlr, Yay.Smelt_ItemEntity_Cooking_Finished, buf);
 		}
 	}
-	public static void cookDrop(World world, ItemEntity item, int ticks) {
-		item.setPickupDelayInfinite();
+	public static void cookDrop(World world, ItemEntity drop, int ticks) {
+		drop.setPickupDelayInfinite();
 		if (ticks > 0) {
 			Utils.schedule(ticks, server -> {
-				smeltGroundItem(world, item);
+				smeltGroundItem(world, drop, false);
 			});
 
 			// FX
 			Random random = new Random();
 			Utils.repeat(ticks, server -> {
 				if (random.nextFloat() < .15) {
-					Vec3d pos = item.getPos();
+					Vec3d pos = drop.getPos();
 
 					PacketByteBuf buf = PacketByteBufs.create();
 					buf.writeVector3f(pos.toVector3f());
@@ -106,7 +126,7 @@ public class Smelt extends Enchantment {
 				}
 			});
 		} else {
-			smeltGroundItem(world, item);
+			smeltGroundItem(world, drop, true);
 		}
 	}
 }

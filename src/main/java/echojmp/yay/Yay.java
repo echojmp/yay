@@ -2,6 +2,7 @@ package echojmp.yay;
 
 import echojmp.yay.Enchants.Smelt;
 import echojmp.yay.Enchants.SmeltFunctionality;
+import echojmp.yay.Items.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -15,8 +16,6 @@ import net.minecraft.util.Identifier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.function.Supplier;
 
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -52,6 +51,7 @@ public class Yay implements ModInitializer {
 		// Inits
 		Utils.initServer();
 		SmeltFunctionality.init();
+		ModItems.init();
 	}
 
 	public static Identifier id(String path) {
