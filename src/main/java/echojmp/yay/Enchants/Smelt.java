@@ -82,6 +82,8 @@ public class Smelt extends Enchantment {
 				newResult = ModItems.MOLTEN_EMERALD;
 			} else if (result.isOf(Items.COAL)) {
 				newResult = ModItems.MOLTEN_COAL;
+			} else if (result.isOf(Items.LAPIS_LAZULI)) {
+				newResult = ModItems.MOLTEN_LAPIS_LAZULI;
 			}
 
 			if (!result.isOf(newResult)) {
