@@ -1,5 +1,11 @@
 {
   "enchantment.yay.smelt": "Smelting",
   "item.yay.molten_charcoal": "Molten Charcoal",
+  "item.yay.molten_coal": "Molten Coal",
+  "item.yay.molten_iron_ingot": "Molten Iron Ingot",
+  "item.yay.molten_gold_ingot": "Molten Gold Ingot",
+  "item.yay.molten_copper_ingot": "Molten Copper Ingot",
+  "item.yay.molten_diamond": "Molten Diamond",
+  "item.yay.molten_emerald": "Molten Emerald",
   "itemgroup": "Yay"
 }

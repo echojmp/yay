@@ -70,6 +70,18 @@ public class Smelt extends Enchantment {
 
 			if (result.isOf(Items.CHARCOAL)) {
 				newResult = ModItems.MOLTEN_CHARCOAL;
+			} else if (result.isOf(Items.IRON_INGOT)) {
+				newResult = ModItems.MOLTEN_IRON_INGOT;
+			} else if (result.isOf(Items.GOLD_INGOT)) {
+				newResult = ModItems.MOLTEN_GOLD_INGOT;
+			} else if (result.isOf(Items.COPPER_INGOT)) {
+				newResult = ModItems.MOLTEN_COPPER_INGOT;
+			} else if (result.isOf(Items.DIAMOND)) {
+				newResult = ModItems.MOLTEN_DIAMOND;
+			} else if (result.isOf(Items.EMERALD)) {
+				newResult = ModItems.MOLTEN_EMERALD;
+			} else if (result.isOf(Items.COAL)) {
+				newResult = ModItems.MOLTEN_COAL;
 			}
 
 			if (!result.isOf(newResult)) {
